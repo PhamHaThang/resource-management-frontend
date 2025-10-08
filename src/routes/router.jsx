@@ -3,6 +3,8 @@ import AuthLayout from "../layouts/AuthLayout";
 import LoginPage from "../pages/auth/LoginPage";
 import DashboardLayout from "../layouts/DashboardLayout";
 import WelcomePage from "../pages/WelcomePage";
+import ResourceListPage from "../pages/resources/ResourceListPage";
+import { ResourceDetailPage } from "../pages/resources/ResourceDetailPage";
 
 export const router = createBrowserRouter([
   {
@@ -19,6 +21,10 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <DashboardLayout />,
-    children: [{ index: true, element: <WelcomePage /> }],
+    children: [
+      { index: true, element: <WelcomePage /> },
+      { path: "resources", element: <ResourceListPage /> },
+      { path: "resources/:id", element: <ResourceDetailPage /> },
+    ],
   },
 ]);
