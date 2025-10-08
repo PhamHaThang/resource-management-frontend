@@ -1,6 +1,19 @@
 import { Outlet } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 export default function DashboardLayout() {
+  const { user, loading } = useAuth();
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        Đang tải...
+      </div>
+    );
+  }
+
+  if (!user) {
+    return <Navigate to="/auth/login" replace />;
+  }
   return (
     <div className="flex h-screen bg-neutral-100">
       {/* Sidebar*/}
